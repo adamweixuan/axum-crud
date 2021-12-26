@@ -5,7 +5,8 @@ use tracing::debug;
 
 static DB_POOL: OnceCell<MySqlPool> = OnceCell::const_new();
 
-const DSN: &'static str = "mysql://root:root@123456@127.0.0.1:3306/axum_crud";
+const DSN: &'static str = "mysql://your_db_name:your_db_passwd@your_db_host:port/axum_crud";
+
 const POOL_SIZE: u32 = 1024;
 
 async fn init_db() -> MySqlPool {
