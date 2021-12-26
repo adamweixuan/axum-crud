@@ -1,6 +1,6 @@
 use axum::{routing::get, routing::post, Router};
 use axum_crud::ping;
-use axum_crud::routers::user::{info, login, logout, register};
+use axum_crud::routers::user::{info, list_all, login, logout, register};
 use mimalloc::MiMalloc;
 use std::net::SocketAddr;
 
@@ -21,6 +21,7 @@ async fn main() {
                 .route("/register", post(register))
                 .route("/info", get(info))
                 .route("/logout", post(logout))
+                .route("/list", get(list_all))
                 .route("/login", post(login)),
         );
 

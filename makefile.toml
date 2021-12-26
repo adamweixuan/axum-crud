@@ -7,13 +7,8 @@ install_crate = "rustfmt"
 args = ["clean"]
 command = "cargo"
 
-# [tasks.lint]
-# install_crate = "clippy"
-# command = "cargo"
-# args = ["clippy"]
-
 [tasks.build]
-args = ["build"]
+args = ["build", "--release"]
 command = "cargo"
 dependencies = ["clean"]
 
