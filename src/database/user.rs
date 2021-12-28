@@ -5,9 +5,10 @@ pub async fn create(user: &UserModel) -> Result<(), sqlx::Error> {
     let connection = get_connection().await;
     sqlx::query(
         r#"
-        insert into userinfos (name,age,email,address) values (?,?,?,?)
+        insert into userinfos (id,name,age,email,address) values (?,?,?,?,?)
     "#,
     )
+    .bind(&user.id)
     .bind(&user.name)
     .bind(&user.age)
     .bind(&user.email)
@@ -53,6 +54,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_create() {
+        dotenv::dotenv().ok();
         let mut rng = rand::thread_rng();
 
         let rand: i32 = rng.gen();
@@ -62,9 +64,9 @@ mod tests {
         let email = format!("wx.uv{}@gmail.com", rand);
 
         let user = UserModel {
-            id: 0,
+            id: 1,
             name: "James Bond".to_string(),
-            age: age as i32,
+            age: age as i64,
             email,
             address: "北京市海淀区".to_string(),
         };
@@ -75,12 +77,14 @@ mod tests {
 
     #[tokio::test]
     async fn test_query_by_email() {
+        dotenv::dotenv().ok();
         let rsp = query_by_email("uu.wx@gmail.com").await;
         println!("rsp {:?}", rsp)
     }
 
     #[tokio::test]
     async fn test_list_user() {
+        dotenv::dotenv().ok();
         let list_rsp = list_user(10, 0).await;
         println!("list_rsp {:?}", list_rsp)
     }
