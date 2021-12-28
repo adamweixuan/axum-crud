@@ -3,9 +3,9 @@ use sqlx::FromRow;
 
 #[derive(Serialize, Deserialize, Debug, Clone, Default, FromRow)]
 pub struct UserModel {
-    pub id: i32,
+    pub id: i64,
     pub name: String,
-    pub age: i32,
+    pub age: i64,
     pub email: String,
     pub address: String,
 }
@@ -15,7 +15,7 @@ pub struct UserModel {
 pub struct RegisterRequest {
     pub user_name: String,
     pub passwd: String,
-    pub age: i32,
+    pub age: i64,
     pub email: String,
     pub address: String,
 }
