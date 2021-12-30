@@ -1,3 +1,4 @@
+pub mod cache;
 pub mod database;
 pub mod entity;
 pub mod infra;
