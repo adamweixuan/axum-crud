@@ -29,3 +29,9 @@ pub struct RegisterResponse {}
 pub struct ListResponse {
     pub user_list: Vec<UserModel>,
 }
+
+#[derive(Serialize, Deserialize, Debug, Default)]
+#[serde(default)]
+pub struct IPResponse {
+    pub ip: String,
+}
