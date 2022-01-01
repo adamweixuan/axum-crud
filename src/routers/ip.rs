@@ -3,6 +3,8 @@ use crate::entity::user::IPResponse;
 use axum::http::StatusCode;
 use axum::Json;
 
+use chrono::prelude::*;
+
 pub async fn get_ip() -> Result<Json<IPResponse>, StatusCode> {
     let ip = CACHE.get("origin");
 
@@ -12,4 +14,8 @@ pub async fn get_ip() -> Result<Json<IPResponse>, StatusCode> {
             ip: ipadr.to_string(),
         })),
     }
+}
+
+pub async fn current_time() -> String {
+    Local::now().to_string()
 }
