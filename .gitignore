@@ -19,3 +19,4 @@ Cargo.lock
 .idea/*
 *.db-shm
 *.db-wal
+log
