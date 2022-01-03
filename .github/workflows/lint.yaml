@@ -4,7 +4,7 @@ on:
     branches:
       - master
 
-name: Check and Lint
+name: lint
 
 jobs:
   check:
@@ -52,3 +52,23 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --all-features
           name: Clippy Output
+
+  pack:
+    name: pack
+    env:
+      PROJECT_NAME_UNDERSCORE: rust_ci_github_actions_workflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - name: Release Build
+        run: bash build.sh
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.PROJECT_NAME_UNDERSCORE }}
+          path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}

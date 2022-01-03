@@ -17,7 +17,6 @@ pub async fn ping() -> &'static str {
 
 pub fn router() -> Router {
     Router::new()
-        // `GET /` goes to `root`
         .route("/ping", get(ping))
         .nest(
             "/user",
