@@ -7,6 +7,8 @@ use axum::Router;
 pub mod cache;
 pub mod database;
 pub mod entity;
+pub mod extract;
+pub mod fileio;
 pub mod infra;
 pub mod pb;
 pub mod routers;
