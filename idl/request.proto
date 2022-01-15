@@ -4,127 +4,128 @@ package bid;
 
 // 经纬度
 message Geo {
-  // 维度
-  float lat = 1;
-  // 精度
-  float lon = 2;
-  // 来源 1:gps 2:ip
-  int32 type = 3;
+    // 维度
+    float lat = 1;
+    // 精度
+    float lon = 2;
+    // 来源 1:gps 2:ip
+    int32 type = 3;
 }
 
 // 网络
 enum ConnectionType {
-  CONNECTION_UNKNOWN = 0;
-  ETHERNET = 1;
-  WIFI = 2;
-  CELL_UNKNOWN = 3;
-  CELL_2G = 4;
-  CELL_3G = 5;
-  CELL_4G = 6;
+    CONNECTION_TYPE_UNSPECIFIED = 0;
+    CONNECTION_TYPE_ETHERNET = 1;
+    CONNECTION_TYPE_WIFI = 2;
+    CONNECTION_TYPE_CELL_UNKNOWN = 3;
+    CONNECTION_TYPE_CELL_2G = 4;
+    CONNECTION_TYPE_CELL_3G = 5;
+    CONNECTION_TYPE_CELL_4G = 6;
 }
 
 enum Platform {
-  Platform_Unknown = 0;
-  Android = 1;
-  IOS = 2;
-  PC = 3;
+    PLATFORM_UNSPECIFIED = 0;
+    PLATFORM_ANDROID = 1;
+    PLATFORM_IOS = 2;
+    PLATFORM_PC = 3;
+}
+// 性别
+enum Gender {
+    GENDER_UNSPECIFIED = 0;
+    GENDER_FEMALE = 1;
+    GENDER_MALE = 2;
 }
 
 enum Orientation {
-  ORIENTATION_UNKNOWN = 0;
-  // 横屏
-  VERTICAL = 1;
-  // 竖屏
-  HORIZONTAL = 2;
+    ORIENTATION_UNSPECIFIED = 0;
+    // 横屏
+    ORIENTATION_VERTICAL = 1;
+    // 竖屏
+    ORIENTATION_HORIZONTAL = 2;
 }
 
 // 设备
 message Device {
-  // 系统类型
-  Platform platform = 1;
-  // 设备品牌
-  string make = 2;
-  // 设备型号
-  string model = 3;
-  // 系统版本
-  string osv = 4;
-  // user agent
-  string ua = 5;
-  // 屏幕方向
-  Orientation orientation = 6;
-  string Ip = 7;
-  ConnectionType connectiontype = 8;
-  Geo geo = 9;
+    // 系统类型
+    Platform platform = 1;
+    // 设备品牌
+    string make = 2;
+    // 设备型号
+    string model = 3;
+    // 系统版本
+    string osv = 4;
+    // user agent
+    string ua = 5;
+    // 屏幕方向
+    Orientation orientation = 6;
+    // Ip addr
+    string ip = 7;
+    ConnectionType connectiontype = 8;
+    Geo geo = 9;
 }
 
 message Video {
-  int32 width = 1;
-  int32 height = 2;
-  string url = 3;
+    int32 width = 1;
+    int32 height = 2;
+    string url = 3;
 }
 
 message Banner {
-  int32 width = 1;
-  int32 height = 2;
-  string url = 3;
+    int32 width = 1;
+    int32 height = 2;
+    string url = 3;
 }
 
 message Imp {
-  string impid = 1;
-  Banner banner = 2;
-  Video video = 3;
+    string impid = 1;
+    Banner banner = 2;
+    Video video = 3;
 }
 
 // bid request
 message BidRequest {
-  // 性别
-  enum Gender {
-    GENDER_UNKNOWN = 0;
-    FEMALE = 1;
-    MALE = 2;
-  }
-
-  string traceId = 1;
-  Gender gender = 2;
-  Device device = 3;
-  int32 tmax = 4;
-  repeated Imp imp = 5;
+    string trace_id = 1;
+    Gender gender = 2;
+    Device device = 3;
+    int32 tmax = 4;
+    repeated Imp imp = 5;
 }
 
 message Bid {
-  string id = 1;
-  // 对应imp的impid
-  string impid = 2;
-  // aid
-  string aid = 3;
-  // notice url (win url)
-  string nurl = 4;
-  string domain = 5;
+    string id = 1;
+    // 对应imp的impid
+    string impid = 2;
+    // aid
+    string aid = 3;
+    // notice url (win url)
+    string nurl = 4;
+    // host name
+    string domain = 5;
 
-  // IOS: the iTunes id
-  // Android: the package name
-  string bundle = 6;
-  // price
-  double price = 7;
+    // IOS: the iTunes id
+    // Android: the package name
+    string bundle = 6;
+    // price
+    double price = 7;
 }
 
 // no bid
 enum NoBidReason {
-  UNKNOWN_ERROR = 0;
-  TECHNICAL_ERROR = 1;
-  INVALID_REQUEST = 2;
-  KNOWN_WEB_SPIDER = 3;
-  SUSPECTED_NONHUMAN_TRAFFIC = 4;
-  CLOUD_DATACENTER_PROXYIP = 5;
-  UNSUPPORTED_DEVICE = 6;
-  BLOCKED_PUBLISHER = 7;
-  UNMATCHED_USER = 8;
-  DAILY_READER_CAP = 9;
-  DAILY_DOMAIN_CAP = 10;
+    NO_BID_REASON_UNSPECIFIED = 0;
+    NO_BID_REASON_TECHNICAL_ERROR = 1;
+    NO_BID_REASON_INVALID_REQUEST = 2;
+    NO_BID_REASON_KNOWN_WEB_SPIDER = 3;
+    NO_BID_REASON_SUSPECTED_NONHUMAN_TRAFFIC = 4;
+    NO_BID_REASON_CLOUD_DATACENTER_PROXYIP = 5;
+    NO_BID_REASON_UNSUPPORTED_DEVICE = 6;
+    NO_BID_REASON_BLOCKED_PUBLISHER = 7;
+    NO_BID_REASON_UNMATCHED_USER = 8;
+    NO_BID_REASON_DAILY_READER_CAP = 9;
+    NO_BID_REASON_DAILY_DOMAIN_CAP = 10;
 }
 
 message BidResponse {
-  string traceId = 1;
-  repeated Bid bid = 2;
-  NoBidReason nbr = 3;
+    string trace_id = 1;
+    repeated Bid bid = 2;
+    NoBidReason nbr = 3;
 }

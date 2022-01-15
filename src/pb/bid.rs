@@ -32,6 +32,7 @@ pub struct Device {
     /// 屏幕方向
     #[prost(enumeration = "Orientation", tag = "6")]
     pub orientation: i32,
+    /// Ip addr
     #[prost(string, tag = "7")]
     pub ip: ::prost::alloc::string::String,
     #[prost(enumeration = "ConnectionType", tag = "8")]
@@ -71,7 +72,7 @@ pub struct Imp {
 pub struct BidRequest {
     #[prost(string, tag = "1")]
     pub trace_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "bid_request::Gender", tag = "2")]
+    #[prost(enumeration = "Gender", tag = "2")]
     pub gender: i32,
     #[prost(message, optional, tag = "3")]
     pub device: ::core::option::Option<Device>,
@@ -79,29 +80,6 @@ pub struct BidRequest {
     pub tmax: i32,
     #[prost(message, repeated, tag = "5")]
     pub imp: ::prost::alloc::vec::Vec<Imp>,
-}
-/// Nested message and enum types in `BidRequest`.
-pub mod bid_request {
-    /// 性别
-    #[derive(
-        serde::Serialize,
-        serde::Deserialize,
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration,
-    )]
-    #[repr(i32)]
-    pub enum Gender {
-        Unknown = 0,
-        Female = 1,
-        Male = 2,
-    }
 }
 #[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, ::prost::Message)]
 pub struct Bid {
@@ -116,6 +94,7 @@ pub struct Bid {
     /// notice url (win url)
     #[prost(string, tag = "4")]
     pub nurl: ::prost::alloc::string::String,
+    /// host name
     #[prost(string, tag = "5")]
     pub domain: ::prost::alloc::string::String,
     /// IOS: the iTunes id
@@ -151,7 +130,7 @@ pub struct BidResponse {
 )]
 #[repr(i32)]
 pub enum ConnectionType {
-    ConnectionUnknown = 0,
+    Unspecified = 0,
     Ethernet = 1,
     Wifi = 2,
     CellUnknown = 3,
@@ -174,10 +153,30 @@ pub enum ConnectionType {
 )]
 #[repr(i32)]
 pub enum Platform {
-    Unknown = 0,
+    Unspecified = 0,
     Android = 1,
     Ios = 2,
     Pc = 3,
+}
+/// 性别
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
+#[repr(i32)]
+pub enum Gender {
+    Unspecified = 0,
+    Female = 1,
+    Male = 2,
 }
 #[derive(
     serde::Serialize,
@@ -194,7 +193,7 @@ pub enum Platform {
 )]
 #[repr(i32)]
 pub enum Orientation {
-    Unknown = 0,
+    Unspecified = 0,
     /// 横屏
     Vertical = 1,
     /// 竖屏
@@ -216,7 +215,7 @@ pub enum Orientation {
 )]
 #[repr(i32)]
 pub enum NoBidReason {
-    UnknownError = 0,
+    Unspecified = 0,
     TechnicalError = 1,
     InvalidRequest = 2,
     KnownWebSpider = 3,

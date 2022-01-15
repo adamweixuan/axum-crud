@@ -19,7 +19,6 @@ async fn main() {
     tracing_subscriber::fmt().init();
     dotenv::dotenv().ok();
     let opt = AppOpt::parse();
-
     background_run();
     // let addr = std::env::var("HOST_PORT")
     //     .unwrap_or_else(|_| "0.0.0.0:8001".to_string())

@@ -3,8 +3,8 @@ pub mod bid;
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::pb::bid::bid_request::Gender::{Female, Male};
     use crate::pb::bid::BidRequest;
+    use crate::pb::bid::Gender::{Female, Male};
     use prost::Message;
     use std::io::Cursor;
 
