@@ -20,3 +20,4 @@ Cargo.lock
 *.db-shm
 *.db-wal
 log
+test_create.txt

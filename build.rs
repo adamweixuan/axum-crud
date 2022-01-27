@@ -21,7 +21,6 @@ fn generate_build_info() -> anyhow::Result<()> {
         *config.git_mut().enabled_mut() = false;
         vergen(config)
     } else {
-        println!("generate_build_info success...");
         Ok(())
     }
 }
