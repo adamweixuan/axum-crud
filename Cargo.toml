@@ -43,7 +43,12 @@ mime = "0.3.16"
 
 [build-dependencies]
 prost-build = { version = "0.9" }
-vergen = { version = "6", default-features = false, features = ["build", "git", "cargo", "rustc"] }
+vergen = { version = "6", default-features = false, features = [
+    "build",
+    "git",
+    "cargo",
+    "rustc",
+] }
 anyhow = "1.0"
 
 
