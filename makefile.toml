@@ -18,4 +18,4 @@ command = "cargo"
 dependencies = ["clean"]
 
 [tasks.release]
-dependencies = ["format", "build", "test"]
+dependencies = ["format", "build"]
