@@ -2,11 +2,10 @@ use axum_crud::cache::ip::background_run;
 use axum_crud::router;
 use clap::Parser;
 use lazy_static::lazy_static;
-use mimalloc::MiMalloc;
 use tracing::info;
 
-#[global_allocator]
-static GLOBAL: MiMalloc = MiMalloc;
+// #[global_allocator]
+// static GLOBAL: MiMalloc = MiMalloc;
 
 lazy_static! {
     static ref VERSION: &'static str = {
@@ -54,10 +53,6 @@ async fn main() {
     dotenv::dotenv().ok();
     let opt = AppOpt::parse();
     background_run();
-    // let addr = std::env::var("HOST_PORT")
-    //     .unwrap_or_else(|_| "0.0.0.0:8001".to_string())
-    //     .parse()
-    //     .unwrap();
     let addr = format!("0.0.0.0:{}", opt.port).parse().unwrap();
     info!("listening on {}", addr);
 
