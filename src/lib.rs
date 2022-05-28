@@ -1,8 +1,9 @@
 use crate::routers::ip::{current_time, get_ip};
 use crate::routers::user::{info, list_all, login, logout, register};
-use axum::routing::get;
 use axum::routing::post;
-use axum::Router;
+use axum::routing::{get, get_service};
+use axum::{http, Router};
+use tower_http::services::ServeDir;
 
 pub mod cache;
 pub mod database;
@@ -34,5 +35,14 @@ pub fn router() -> Router {
             Router::new()
                 .route("/ip", get(get_ip))
                 .route("/time", get(current_time)),
+        )
+        .nest(
+            "static",
+            get_service(ServeDir::new(".")).handle_error(|error: std::io::Error| async move {
+                (
+                    http::StatusCode::INTERNAL_SERVER_ERROR,
+                    format!("{}", error),
+                )
+            }),
         )
 }

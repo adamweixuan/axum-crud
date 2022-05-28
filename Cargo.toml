@@ -20,8 +20,8 @@ futures = "0.3"
 futures-util = { version = "0.3", default-features = false, features = [
     "alloc",
 ] }
-jwt = "0.15.0"
-lazy_static = "1.4.0"
+jwt = "0.16"
+lazy_static = "1.4"
 # mimalloc = "0.1.27"
 rand = "0.8.0"
 reqwest = { version = "0.11", features = ["json"] }
@@ -34,16 +34,17 @@ sqlx = { version = "0.5.9", features = [
     "chrono",
 ] }
 tokio = { version = "1.15.0", features = ["full"] }
-tracing = "0.1.29"
-tracing-subscriber = "0.3.4"
-uuid = { version = "0.8", features = ["serde", "v4"] }
-prost = "0.9"
-prost-types = "0.9"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+uuid = { version = "1", features = ["serde", "v4"] }
+prost = "0.10"
+prost-types = "0.10"
 mime = "0.3.16"
+tower-http = { version = "0.3", features = ["fs", "trace"] }
 
 [build-dependencies]
-prost-build = { version = "0.9" }
-vergen = { version = "6", default-features = false, features = [
+prost-build = { version = "0.10" }
+vergen = { version = "7", default-features = false, features = [
     "build",
     "git",
     "cargo",
