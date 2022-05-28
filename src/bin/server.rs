@@ -49,7 +49,15 @@ struct AppOpt {
 
 #[tokio::main]
 async fn main() {
-    tracing_subscriber::fmt().init();
+    tracing_subscriber::fmt()
+        .with_thread_ids(true)
+        .with_line_number(true)
+        .pretty()
+        .init();
+
+    if std::env::var("RUST_LOG").is_err() {
+        std::env::set_var("RUST_LOG", "info");
+    }
     dotenv::dotenv().ok();
     let opt = AppOpt::parse();
     background_run();

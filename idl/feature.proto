@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package feature;
+
+message ValueType {
+    oneof RealType {
+        int32 int_value = 1;
+        float float_value = 2;
+        string string_value = 3;
+        bool bool_value = 4;
+        bytes bytes_value = 5;
+    }
+}
+
+message Feature {
+    string name = 1;
+    repeated ValueType value = 2;
+}
+
+
+message Batch {
+    repeated Feature feature = 1;
+}
